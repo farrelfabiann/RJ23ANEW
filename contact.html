@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Dosen</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="icon" href="Image/profil.jpg" />
+    <meta name="theme-color" content="#ADD8E6" />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <script src="src/navbar.js"></script>
+
+    <section class="contributors" id="contact-dosen">
+      <div class="max-width">
+        <h2 class="title">Contact Dosen</h2>
+        <div id="dosen-list" class="carousel owl-carousel"></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Made by <a href="https://www.instagram.com/farrelfabiann/" target="_blank">farrelfabian</a></span>
+    </footer>
+
+    <script>
+      // Ubah data dosen di sini untuk menambah/mengedit dengan mudah
+      const dosenData = [
+        { name: "Pak Torik Jaringangan Multimedia", phone: "6283846846601" },
+        { name: "Pak Deni - MM dan Masyarakat", phone: "6281398128142" },
+        { name: "Bu Safy - Teknik Penulisan Ilmiah", phone: "6282310265959" },
+        { name: "Pak Suhaili - Rekayasa Perangkat Lunak", phone: "628568684098" },
+        { name: "Pak Ardo - Animasi3D", phone: "6281285880090" },
+        { name: "Pak Chaizir - AR", phone: "6285310590090" },
+        // Tambahkan entri baru dengan format { name, phone }
+      ];
+
+      function createWhatsappLink(phone, text) {
+        const encodedText = encodeURIComponent(text || "Halo Pak/Bu, saya ingin menghubungi Anda.");
+        return `https://wa.me/${phone}?text=${encodedText}`;
+      }
+
+      function renderDosenList() {
+        const listContainer = document.getElementById("dosen-list");
+        listContainer.innerHTML = "";
+
+        dosenData.forEach((dosen) => {
+          const card = document.createElement("div");
+          card.className = "cardd";
+
+          const box = document.createElement("div");
+          box.className = "boxx";
+
+          const nameLink = document.createElement("a");
+          nameLink.className = "text";
+          nameLink.style.color = "#fff";
+          nameLink.href = createWhatsappLink(dosen.phone, `Halo ${dosen.name}`);
+          nameLink.target = "_blank";
+          nameLink.rel = "noopener";
+          nameLink.textContent = dosen.name;
+
+          box.appendChild(nameLink);
+          card.appendChild(box);
+          listContainer.appendChild(card);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", renderDosenList);
+    </script>
+
+    <script src="src/script.js"></script>
+  </body>
+  </html>
+
+
